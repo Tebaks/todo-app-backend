@@ -1,0 +1,25 @@
+{
+    "name": "Todo App",
+    "description": "Todo App Backend",
+    "keywords": ["Go", "Golang"],
+    "repository": "https://github.com/Tebaks/todo-app-backend",
+    "stack": "container",
+    "addons": [
+        {
+            "plan": "heroku-postgresql:hobby-dev"
+        }
+    ],
+    "env": {
+        "PORT": {
+            "description": "Port of server.",
+            "value": "3000",
+            "required": true
+          }
+
+      },
+    "buildpacks": [
+        {
+            "url": "heroku/go"
+        }
+    ]
+}

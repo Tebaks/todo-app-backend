@@ -1,0 +1,25 @@
+on:
+  push:
+    branches:
+      - main
+
+name: CI/CD
+jobs:
+  test:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: Install Golang
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Test Code
+        run: go test ./... -v
+      - name: 'Deploy to Heroku'
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          usedocker: true
